@@ -15,6 +15,7 @@ const JobBoard = ({
     languages,
     tools,
   },
+  handleTagClick,
 }) => {
   const tags = [role, level];
 
@@ -26,12 +27,16 @@ const JobBoard = ({
 
   return (
     <div
-      className={`flex flex-col bg-white shadow-md m-4 p-6 rounded-md ${
+      className={`flex flex-col bg-white shadow-md my-14 mx-6 p-6 rounded-md ${
         featured ? "border-l-4 border-teal-600" : ""
-      }`}
+      } sm:flex-row`}
     >
       <div>
-        <img src={logo} alt={company} />
+        <img
+          className=" -mt-12 mb-4 w-16 h-16 sm:mt-0 sm:h-24 sm:w-24 sm:my-0"
+          src={logo}
+          alt={company}
+        />
       </div>
       <div className="flex flex-col ml-6 justify-between">
         <h3 className="flex items-center text-teal-500 text-lg font-spartan">
@@ -52,15 +57,18 @@ const JobBoard = ({
           )}
         </h3>
 
-        <h2 className="font-bold text-xl">{position}</h2>
+        <h2 className="font-bold text-xl my-2">{position}</h2>
         <p className=" text-gray-500">
           {postedAt} · {contract} · {location}
         </p>
       </div>
-      <div className="flex items-center ml-auto">
+      <div className="flex flex-wrap  items-center m-4 border-t border-gray-400 border-solid sm:ml-auto sm:border-0 sm:pt-0 sm:mt-0 sm:mb-0">
         {tags
           ? tags.map((tag) => (
-              <span className="bg-cyan-50 text-teal-600 font-bold rounded m-2 p-2">
+              <span
+                onClick={() => handleTagClick(tag)}
+                className=" cursor-pointer bg-cyan-50 text-teal-600 font-bold rounded mr-4 mt-4 p-2"
+              >
                 {tag}
               </span>
             ))
